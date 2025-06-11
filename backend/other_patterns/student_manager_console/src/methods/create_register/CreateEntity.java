@@ -1,0 +1,139 @@
+package methods.create_register;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Scanner;
+import java.util.Properties;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+/**
+ * Handles creation of records for Student, Teacher, and Subject entities.
+ */
+public class CreateEntity {
+    private String dbUrl;
+
+    /**
+     * Loads the database connection URL from the configuration file.
+     */
+    public CreateEntity() {
+        Properties properties = new Properties();
+        try (FileInputStream input = new FileInputStream("src/database/DBconfiguration.properties")) {
+            properties.load(input);
+            dbUrl = properties.getProperty("db.url");
+        } catch (IOException e) {
+            System.out.println("Error loading database configuration: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Creates a new student record by collecting input from the console.
+     */
+    public void createStudent() {
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.print("Enter student ID number (no spaces or dots): ");
+            int idNumber = scanner.nextInt();
+            scanner.nextLine(); // Clear the buffer
+
+            System.out.print("Enter student first name: ");
+            String firstName = scanner.nextLine();
+
+            System.out.print("Enter student last name: ");
+            String lastName = scanner.nextLine();
+
+            System.out.print("Enter date of birth (format: DD-MM-YYYY): ");
+            String birthDate = scanner.nextLine();
+
+            System.out.print("Enter address: ");
+            String address = scanner.nextLine();
+
+            // Insert data into the "student" table
+            try (Connection connection = DriverManager.getConnection(dbUrl)) {
+                String sql = "INSERT INTO student(student_id_number, first_name, last_name, birth_date, address) VALUES (?, ?, ?, ?, ?)";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setInt(1, idNumber);
+                statement.setString(2, firstName);
+                statement.setString(3, lastName);
+                statement.setString(4, birthDate);
+                statement.setString(5, address);
+
+                int rowsInserted = statement.executeUpdate();
+                if (rowsInserted > 0) {
+                    System.out.println("Student record created successfully.");
+                } else {
+                    System.out.println("Unexpected error: Could not create student record.");
+                }
+            } catch (SQLException e) {
+                System.out.println("Database error while creating student: " + e.getMessage());
+            }
+        }
+    }
+
+    /**
+     * Creates a new teacher record by collecting input from the console.
+     */
+    public void createTeacher() {
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.print("Enter teacher ID number: ");
+            int idNumber = scanner.nextInt();
+            scanner.nextLine(); // Clear the buffer
+
+            System.out.print("Enter teacher first name: ");
+            String firstName = scanner.nextLine();
+
+            System.out.print("Enter teacher last name: ");
+            String lastName = scanner.nextLine();
+
+            // Insert data into the "teacher" table
+            try (Connection connection = DriverManager.getConnection(dbUrl)) {
+                String sql = "INSERT INTO teacher(teacher_id_number, first_name, last_name) VALUES (?, ?, ?)";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setInt(1, idNumber);
+                statement.setString(2, firstName);
+                statement.setString(3, lastName);
+
+                int rowsInserted = statement.executeUpdate();
+                if (rowsInserted > 0) {
+                    System.out.println("Teacher record created successfully.");
+                } else {
+                    System.out.println("Unexpected error: Could not create teacher record.");
+                }
+            } catch (SQLException e) {
+                System.out.println("Database error while creating teacher: " + e.getMessage());
+            }
+        }
+    }
+
+    /**
+     * Creates a new subject record by collecting input from the console.
+     */
+    public void createSubject() {
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.print("Enter subject ID: ");
+            int subjectId = scanner.nextInt();
+            scanner.nextLine(); // Clear the buffer
+
+            System.out.print("Enter subject name: ");
+            String subjectName = scanner.nextLine();
+
+            // Insert data into the "subject" table
+            try (Connection connection = DriverManager.getConnection(dbUrl)) {
+                String sql = "INSERT INTO subject(subject_id, subject_name) VALUES (?, ?)";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setInt(1, subjectId);
+                statement.setString(2, subjectName);
+
+                int rowsInserted = statement.executeUpdate();
+                if (rowsInserted > 0) {
+                    System.out.println("Subject record created successfully.");
+                } else {
+                    System.out.println("Unexpected error: Could not create subject record.");
+                }
+            } catch (SQLException e) {
+                System.out.println("Database error while creating subject: " + e.getMessage());
+            }
+        }
+    }
+}
