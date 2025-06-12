@@ -22,28 +22,36 @@ The repository is organized to clearly separate projects by type and technology,
 Refactor/
 │
 ├── backend/
-│ ├── api-rest/
-│ │ └── [ProjectName]/
-│ ├── mvc/
-│ │ └── [ProjectName]/
-│ └── other-backend-patterns/
-│ └── [ProjectName]/
+│   ├── rest_api/
+│   ├── graphql/
+│   ├── grpc/
+│   ├── websockets/
+│   ├── soap/
+│   ├── other_patterns/
+│   └── rpc/
 │
 ├── frontend/
-│ ├── atomic-design/
-│ │ └── [ProjectName]/
-│ ├── other-frontend-patterns/
-│ │ └── [ProjectName]/
+│   ├── atomic_design/
+│   ├── component_based/
+│   ├── folder_feature_based/
+│   ├── presentational_container/
+│   ├── mvc_adapted/
+│   └── rendering_strategies/ # (SPA, MPA, SSR, SSG)
 │
 ├── fullstack/
-│ ├── clean-architecture/
-│ │ └── [ProjectName]/
-│ ├── hexagonal-architecture/
-│ │ └── [ProjectName]/
-│ └── other-fullstack-patterns/
-│ └── [ProjectName]/
+│   ├── mern/
+│   ├── mevn/
+│   ├── mean/
+│   ├── lamp/
+│   ├── lemp/
+│   ├── jamstack/
+│   ├── django_react/
+│   ├── springboot_vue/
+│   ├── dotnet_angular/
+│   └── rails_hotwire/
 │
 └── README.md
+
 ```
 
 ### Folder descriptions:
@@ -65,3 +73,7 @@ By contributing or following along, you will gain hands-on experience in reading
 ---
 
 _Happy Refactoring!_ 🚀
+
+```
+
+```
