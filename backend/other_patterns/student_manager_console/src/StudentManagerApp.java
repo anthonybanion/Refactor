@@ -30,9 +30,7 @@ public class StudentManagerApp {
             System.out.print(mainMenu);
 
             // Read selected option
-            System.out.print("Select an option: ");
-            option = scanner.nextInt();
-            scanner.nextLine(); // consume newline
+            option = getValidatedIntInput(scanner, "Select an option (1-5): ");
 
             // Execute action based on selected option
             switch (option) {
@@ -64,7 +62,29 @@ public class StudentManagerApp {
 
         scanner.close();
     }
+    
+    /**
+     * Validates and returns an integer input from the user.
+     *
+     * param scanner Scanner object to read input
+     * param prompt  Prompt message to display to the user
+     * return Validated integer input
+     */
 
+     public static int getValidatedIntInput(Scanner scanner, String prompt) {
+        int input;
+        while (true) {
+            System.out.print(prompt);
+            if (scanner.hasNextInt()) {
+                input = scanner.nextInt();
+                scanner.nextLine(); // consume newline
+                return input;
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine(); // consume invalid input
+            }
+        }
+    }
     /**
      * Menu for creating a record (Student, Professor, Subject).
      */
@@ -75,8 +95,7 @@ public class StudentManagerApp {
                 2. Professor
                 3. Subject
                 """);
-        int type = scanner.nextInt();
-        scanner.nextLine(); // consume newline
+        int type = getValidatedIntInput(scanner, "Select the type of record to create (1-3): ");
 
         CreateEntity createEntity = new CreateEntity();
 
@@ -98,8 +117,9 @@ public class StudentManagerApp {
                 2. Professor
                 3. Subject
                 """);
-        int type = scanner.nextInt();
-        scanner.nextLine(); // consume newline
+
+        int  type = getValidatedIntInput(scanner, "Select the type of record to read (1-3): ");
+        
 
         ReadEntity readEntity = new ReadEntity();
 
@@ -121,8 +141,8 @@ public class StudentManagerApp {
                 2. Professor
                 3. Subject
                 """);
-        int type = scanner.nextInt();
-        scanner.nextLine(); // consume newline
+        int type = getValidatedIntInput(scanner, "Select the type of record to update (1-3): ");
+        
 
         UpdateEntity updateEntity = new UpdateEntity();
 
@@ -145,8 +165,7 @@ public class StudentManagerApp {
                 3. Subject
                 4. Delete all records
                 """);
-        int type = scanner.nextInt();
-        scanner.nextLine(); // consume newline
+        int type = getValidatedIntInput(scanner, "Select the type of record to delete (1-4): "); 
 
         DeleteEntity deleteEntity = new DeleteEntity();
 

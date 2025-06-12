@@ -51,7 +51,7 @@ public class CreateEntity {
 
             // Insert data into the "student" table
             try (Connection connection = DriverManager.getConnection(dbUrl)) {
-                String sql = "INSERT INTO student(student_id_number, first_name, last_name, birth_date, address) VALUES (?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO student(id, first_name, last_name, birth_date, address) VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement statement = connection.prepareStatement(sql);
                 statement.setInt(1, idNumber);
                 statement.setString(2, firstName);
@@ -88,7 +88,7 @@ public class CreateEntity {
 
             // Insert data into the "teacher" table
             try (Connection connection = DriverManager.getConnection(dbUrl)) {
-                String sql = "INSERT INTO teacher(teacher_id_number, first_name, last_name) VALUES (?, ?, ?)";
+                String sql = "INSERT INTO teacher(id, first_name, last_name) VALUES (?, ?, ?)";
                 PreparedStatement statement = connection.prepareStatement(sql);
                 statement.setInt(1, idNumber);
                 statement.setString(2, firstName);
@@ -120,7 +120,7 @@ public class CreateEntity {
 
             // Insert data into the "subject" table
             try (Connection connection = DriverManager.getConnection(dbUrl)) {
-                String sql = "INSERT INTO subject(subject_id, subject_name) VALUES (?, ?)";
+                String sql = "INSERT INTO subject(id, name) VALUES (?, ?)";
                 PreparedStatement statement = connection.prepareStatement(sql);
                 statement.setInt(1, subjectId);
                 statement.setString(2, subjectName);

@@ -72,7 +72,7 @@ public class DeleteEntity {
             int id = scanner.nextInt();
 
             try (Connection connection = DriverManager.getConnection(dbUrl)) {
-                String sql = "DELETE FROM professor WHERE professor_id = ?";
+                String sql = "DELETE FROM professor WHERE id = ?";
                 PreparedStatement statement = connection.prepareStatement(sql);
                 statement.setInt(1, id);
 
@@ -102,7 +102,7 @@ public class DeleteEntity {
             int id = scanner.nextInt();
 
             try (Connection connection = DriverManager.getConnection(dbUrl)) {
-                String sql = "DELETE FROM subject WHERE subject_id = ?";
+                String sql = "DELETE FROM subject WHERE id = ?";
                 PreparedStatement statement = connection.prepareStatement(sql);
                 statement.setInt(1, id);
 
