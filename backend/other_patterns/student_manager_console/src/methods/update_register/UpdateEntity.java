@@ -29,12 +29,10 @@ public class UpdateEntity extends DatabaseConnection {
     /**
      * Updates a student record based on the provided DNI.
      */
-    public void updateStudent() {
+    public void updateStudent(Scanner scanner) {
         if (!checkRecords("student")) {
             return;
         }
-
-        Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter the student's DNI to update: ");
         String dni = scanner.nextLine();
@@ -73,19 +71,15 @@ public class UpdateEntity extends DatabaseConnection {
         } catch (SQLException e) {
             System.out.println("Database error while updating student: " + e.getMessage());
         }
-
-        scanner.close();
     }
 
     /**
      * Updates a teacher record based on the provided DNI.
      */
-    public void updateTeacher() {
+    public void updateTeacher(Scanner scanner) {
         if (!checkRecords("teacher")) {
             return;
         }
-
-        Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter the teacher's DNI to update: ");
         String dni = scanner.nextLine();
@@ -116,19 +110,15 @@ public class UpdateEntity extends DatabaseConnection {
         } catch (SQLException e) {
             System.out.println("Database error while updating teacher: " + e.getMessage());
         }
-
-        scanner.close();
     }
 
     /**
      * Updates a subject record based on the provided DNI.
      */
-    public void updateSubject() {
+    public void updateSubject(Scanner scanner) {
         if (!checkRecords("subject")) {
             return;
         }
-
-        Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter the subject's DNI to update: ");
         String dni = scanner.nextLine();
@@ -155,7 +145,5 @@ public class UpdateEntity extends DatabaseConnection {
         } catch (SQLException e) {
             System.out.println("Database error while updating subject: " + e.getMessage());
         }
-
-        scanner.close();
     }
 }

@@ -31,13 +31,11 @@ public class DeleteEntity {
     /**
      * Deletes a student record by DNI after checking if students exist.
      */
-    public void deleteStudent() {
+    public void deleteStudent(Scanner scanner) {
         if (!hasRecords("student")) {
             System.out.println("No student records found to delete.");
             return;
         }
-
-        try (Scanner scanner = new Scanner(System.in)) {
             System.out.print("Enter the student's DNI to delete: ");
             String dni = scanner.next();
 
@@ -55,19 +53,16 @@ public class DeleteEntity {
             } catch (SQLException e) {
                 System.out.println("Database error while deleting student: " + e.getMessage());
             }
-        }
     }
 
     /**
      * Deletes a teacher record by ID after checking if teachers exist.
      */
-    public void deleteTeacher() {
+    public void deleteTeacher(Scanner scanner) {
         if (!hasRecords("teacher")) {
             System.out.println("No teacher records found to delete.");
             return;
         }
-
-        try (Scanner scanner = new Scanner(System.in)) {
             System.out.print("Enter the teacher's DNI number to delete: ");
             String dni = scanner.next();
 
@@ -85,19 +80,16 @@ public class DeleteEntity {
             } catch (SQLException e) {
                 System.out.println("Database error while deleting teacher: " + e.getMessage());
             }
-        }
     }
 
     /**
      * Deletes a subject record by ID after checking if subjects exist.
      */
-    public void deleteSubject() {
+    public void deleteSubject(Scanner scanner) {
         if (!hasRecords("subject")) {
             System.out.println("No subject records found to delete.");
             return;
         }
-
-        try (Scanner scanner = new Scanner(System.in)) {
             System.out.print("Enter the subject DNI number to delete: ");
             String dni = scanner.next();
 
@@ -115,14 +107,12 @@ public class DeleteEntity {
             } catch (SQLException e) {
                 System.out.println("Database error while deleting subject: " + e.getMessage());
             }
-        }
     }
 
     /**
      * Deletes all records from all tables after user confirmation.
      */
-    public void deleteAllRecords() {
-        try (Scanner scanner = new Scanner(System.in)) {
+    public void deleteAllRecords(Scanner scanner) {
             if (!hasRecords("student") && !hasRecords("teacher") && !hasRecords("subject")) {
                 System.out.println("Error: No records found. Please add data first.");
                 return;
@@ -154,7 +144,6 @@ public class DeleteEntity {
             } else {
                 System.out.println("Invalid choice. Please enter 1 or 2.");
             }
-        }
     }
 
     /**

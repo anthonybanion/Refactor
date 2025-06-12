@@ -31,8 +31,7 @@ public class CreateEntity {
     /**
      * Creates a new student record by collecting input from the console.
      */
-    public void createStudent() {
-        try (Scanner scanner = new Scanner(System.in)) {
+    public void createStudent(Scanner scanner) {
             System.out.print("Enter student DNI number (no spaces or dots): ");
             String dni = scanner.nextLine();
 
@@ -67,14 +66,12 @@ public class CreateEntity {
             } catch (SQLException e) {
                 System.out.println("Database error while creating student: " + e.getMessage());
             }
-        }
     }
 
     /**
      * Creates a new teacher record by collecting input from the console.
      */
-    public void createTeacher() {
-        try (Scanner scanner = new Scanner(System.in)) {
+    public void createTeacher(Scanner scanner) {
             System.out.print("Enter teacher DNI number: ");
             String dni = scanner.nextLine();
 
@@ -101,14 +98,12 @@ public class CreateEntity {
             } catch (SQLException e) {
                 System.out.println("Database error while creating teacher: " + e.getMessage());
             }
-        }
     }
 
     /**
      * Creates a new subject record by collecting input from the console.
      */
-    public void createSubject() {
-        try (Scanner scanner = new Scanner(System.in)) {
+    public void createSubject(Scanner scanner) {
             System.out.print("Enter subject DNI number: ");
             String dni = scanner.nextLine();
 
@@ -132,5 +127,4 @@ public class CreateEntity {
                 System.out.println("Database error while creating subject: " + e.getMessage());
             }
         }
-    }
 }

@@ -33,12 +33,11 @@ public class ReadEntity extends DatabaseConnection {
     /**
      * Reads a student by their ID number.
      */
-    public void readStudent() {
+    public void readStudent(Scanner scanner) {
         if (!checkRecords("student")) {
             return;
         }
 
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Enter student DNI number: ");
         String dni = scanner.next();
 
@@ -61,19 +60,16 @@ public class ReadEntity extends DatabaseConnection {
         } catch (SQLException e) {
             System.out.println("Database connection error: " + e.getMessage());
         }
-
-        scanner.close();
     }
 
     /**
      * Reads a teacher by their DNI number.
      */
-    public void readTeacher() {
+    public void readTeacher(Scanner scanner) {
         if (!checkRecords("teacher")) {
             return;
         }
 
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Enter teacher DNI number: ");
         String dni = scanner.next();
 
@@ -94,19 +90,15 @@ public class ReadEntity extends DatabaseConnection {
         } catch (SQLException e) {
             System.out.println("Database connection error: " + e.getMessage());
         }
-
-        scanner.close();
     }
 
     /**
      * Reads a subject by its ID.
      */
-    public void readSubject() {
+    public void readSubject(Scanner scanner) {
         if (!checkRecords("subject")) {
             return;
         }
-
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Enter subject DNI number: ");
         String dni = scanner.next();
 
@@ -126,7 +118,5 @@ public class ReadEntity extends DatabaseConnection {
         } catch (SQLException e) {
             System.out.println("Database connection error: " + e.getMessage());
         }
-
-        scanner.close();
     }
 }

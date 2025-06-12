@@ -74,6 +74,7 @@ public class StudentManagerApp {
 
     public static int getValidatedIntInput(Scanner scanner, String prompt) {
         System.out.print(prompt);
+        scanner.nextLine();
         try {
             if (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
@@ -113,13 +114,13 @@ public class StudentManagerApp {
 
         switch (type) {
             case 1 : 
-                createEntity.createStudent();
+                createEntity.createStudent(scanner);
                 break;
             case 2 : 
-                createEntity.createTeacher();
+                createEntity.createTeacher(scanner);
                 break;
             case 3 : 
-                createEntity.createSubject();
+                createEntity.createSubject(scanner);
                 break;
             default : 
                 System.out.println(INVALID_OPTION_MSG);
@@ -145,13 +146,13 @@ public class StudentManagerApp {
 
         switch (type) {
             case 1 : 
-                readEntity.readStudent();
+                readEntity.readStudent(scanner);
                 break;
             case 2 : 
-                readEntity.readTeacher();
+                readEntity.readTeacher(scanner);
                 break;
             case 3 : 
-                readEntity.readSubject();
+                readEntity.readSubject(scanner);
                 break;
             default : System.out.println(INVALID_OPTION_MSG);
         }
@@ -176,13 +177,13 @@ public class StudentManagerApp {
 
         switch (type) {
             case 1 : 
-                updateEntity.updateStudent();
+                updateEntity.updateStudent(scanner);
                 break;
             case 2 : 
-                updateEntity.updateTeacher();
+                updateEntity.updateTeacher(scanner);
                 break;
             case 3 : 
-                updateEntity.updateSubject();
+                updateEntity.updateSubject(scanner);
                 break;
             default : 
                 System.out.println(INVALID_OPTION_MSG);
@@ -209,16 +210,16 @@ public class StudentManagerApp {
 
         switch (type) {
             case 1 : 
-                deleteEntity.deleteStudent();
+                deleteEntity.deleteStudent(scanner);
                 break;
             case 2 : 
-                deleteEntity.deleteTeacher();
+                deleteEntity.deleteTeacher(scanner);
                 break;
             case 3 : 
-                deleteEntity.deleteSubject();
+                deleteEntity.deleteSubject(scanner);
                 break;
             case 4 : 
-                deleteEntity.deleteAllRecords();
+                deleteEntity.deleteAllRecords(scanner);
                 break;
             default : 
                 System.out.println(INVALID_OPTION_MSG);
