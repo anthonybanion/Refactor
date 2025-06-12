@@ -40,6 +40,7 @@ public class DatabaseConnection {
         try {
             connection = DriverManager.getConnection(dbUrl);
             System.out.println("Database connection established.");
+            createTablesIfNotExist(); // ← Add this line
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -89,6 +90,49 @@ public class DatabaseConnection {
     public Connection getConnection() {
         return connection;
     }
+
+    /**
+     * Creates necessary tables if they do not exist.
+     */
+    private void createTablesIfNotExist() {
+        String studentTable = """
+            CREATE TABLE IF NOT EXISTS student (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                dni TEXT NOT NULL UNIQUE,
+                first_name TEXT NOT NULL,
+                last_name TEXT NOT NULL,
+                birth_date TEXT,
+                address TEXT
+            );
+        """;
+
+        String teacherTable = """
+            CREATE TABLE IF NOT EXISTS teacher (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                dni TEXT NOT NULL UNIQUE,
+                first_name TEXT NOT NULL,
+                last_name TEXT NOT NULL
+            );
+        """;
+
+        String subjectTable = """
+            CREATE TABLE IF NOT EXISTS subject (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                dni TEXT NOT NULL UNIQUE,
+                name TEXT NOT NULL
+            );
+        """;
+
+        try (Statement statement = connection.createStatement()) {
+            statement.execute(studentTable);
+            statement.execute(teacherTable);
+            statement.execute(subjectTable);
+            System.out.println("All required tables have been verified or created.");
+        } catch (SQLException e) {
+            System.out.println("Error creating tables: " + e.getMessage());
+        }
+    }
+
 
     /**
      * Closes the current database connection if it's open.

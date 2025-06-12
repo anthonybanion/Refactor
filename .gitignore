@@ -1,0 +1,255 @@
+# === 🔒 System and hidden files ===
+.DS_Store
+Thumbs.db
+
+# === 🛠️ Temporary and compilation files ===
+*.log
+*.tmp
+*.swp
+*.bak
+*.~*
+*.db
+
+# === 🧠 Environment and local configuration files ===
+.env
+.env.*
+*.secret
+*.credentials
+
+# === 🐍 Python ===
+**/__pycache__/
+*.py[cod]
+*.pyo
+
+# === ☕ Java ===
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+out/
+
+# === 🐘 PHP ===
+composer.lock
+vendor/
+
+# === 💠 C / C++ ===
+*.o
+*.out
+*.obj
+*.exe
+*.a
+*.so
+*.dll
+
+# === 🧩 Pascal ===
+*.ppu
+*.o
+*.compiled
+*.exe
+
+# === 🧱 C# / .NET ===
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+*.cache
+*.suo
+*.user
+*.sln.docstates
+*.vspscc
+*.vssscc
+
+# === 🐘 Go ===
+*.exe
+*.test
+*.out
+*.a
+*.so
+*.cgo1.go
+*.cgo2.c
+
+
+# === 🐍 Node.js ===
+npm-debug.log*
+yarn-debug.log*
+ler.log
+ler-error.log*
+ler.lock   
+
+# === 🐍 JavaScript ===
+*.js.map
+*.jsx.map
+*.ts.map
+*.tsx.map
+*.jsbundle
+*.jsxbundle
+*.tsbundle
+
+# === 🐍 TypeScript ===
+*.tsbuildinfo
+*.d.ts
+*.d.ts.map
+*.ts.map
+*.tsbundle
+
+# === Perl ===
+*.pl
+*.pm
+*.t
+*.tix
+*.tixc
+*.tixp
+*.tixx
+
+# === 🧪 Testing ===
+coverage/
+*.lcov
+
+# === 🧠 IDE Intelligence ===
+#.vscode/
+.idea/
+.history/
+*.code-workspace
+
+# === 📦 Packages and dependencies ===
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+package-lock.json
+
+# === 📁 Replit ===
+.replit
+replit.nix
+
+# === Ignore everything by default, but include specific folders and files ===
+**/*
+!*/
+!**/*.c
+!**/*.cpp
+!**/*.cs
+!**/*.css
+!**/*.h
+!**/*.html
+!**/*.java
+!**/*.js
+!**/*.json
+!**/*.md
+!**/*.pas
+!**/*.php
+!**/*.pl
+!**/*.psc
+!**/*.py
+!**/*.sh
+!**/*.txt
+!**/*.ts
+!**/*.tsx
+!**/*.xml
+!**/*.yml
+!**/*.yaml
+!**/*.jsx
+!**/.gitignore
+!**/README.md
+
+# === 🗂️ Project-specific ignores ===
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Laravel
+/vendor/
+.env
+.env.*
+/public/storage
+/storage/*.key
+
+# Symfony
+/vendor/
+/var/
+.env
+/.idea/
+/phpunit.result.cache
+/.vscode/
+
+# Django
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+db.sqlite3
+*.sqlite3
+*.log
+*.env
+
+# Spring Boot
+target/
+*.log
+*.jar
+*.war
+*.class
+/.idea/
+/.vscode/
+
+# React
+build/
+node_modules/
+npm-debug.log
+yarn-error.log
+.DS_Store
+
+# Next.js
+.next/
+out/
+node_modules/
+
+# Vue.js
+/node_modules/
+dist/
+npm-debug.log
+yarn-error.log
+
+# Express.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python (general)
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Miscellaneous
+.DS_Store
+*.swp
+.idea/
+.vscode/
+*.log
+*.env
+*.bak
+*.tmp
+*.orig
+
+# JetBrains IDEs (IntelliJ, PhpStorm, etc.)
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# Database files
+*.db
+*.sql
+*.sqlite
+
+# Compiled files
+*.class
+*.o
+*.out
+
+# Operating system files
+Thumbs.db
+ehthumbs.db

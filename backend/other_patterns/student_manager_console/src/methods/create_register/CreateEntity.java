@@ -33,9 +33,8 @@ public class CreateEntity {
      */
     public void createStudent() {
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Enter student ID number (no spaces or dots): ");
-            int idNumber = scanner.nextInt();
-            scanner.nextLine(); // Clear the buffer
+            System.out.print("Enter student DNI number (no spaces or dots): ");
+            String dni = scanner.nextLine();
 
             System.out.print("Enter student first name: ");
             String firstName = scanner.nextLine();
@@ -51,9 +50,9 @@ public class CreateEntity {
 
             // Insert data into the "student" table
             try (Connection connection = DriverManager.getConnection(dbUrl)) {
-                String sql = "INSERT INTO student(id, first_name, last_name, birth_date, address) VALUES (?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO student(dni, first_name, last_name, birth_date, address) VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, idNumber);
+                statement.setString(1, dni);
                 statement.setString(2, firstName);
                 statement.setString(3, lastName);
                 statement.setString(4, birthDate);
@@ -76,9 +75,8 @@ public class CreateEntity {
      */
     public void createTeacher() {
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Enter teacher ID number: ");
-            int idNumber = scanner.nextInt();
-            scanner.nextLine(); // Clear the buffer
+            System.out.print("Enter teacher DNI number: ");
+            String dni = scanner.nextLine();
 
             System.out.print("Enter teacher first name: ");
             String firstName = scanner.nextLine();
@@ -88,9 +86,9 @@ public class CreateEntity {
 
             // Insert data into the "teacher" table
             try (Connection connection = DriverManager.getConnection(dbUrl)) {
-                String sql = "INSERT INTO teacher(id, first_name, last_name) VALUES (?, ?, ?)";
+                String sql = "INSERT INTO teacher(dni, first_name, last_name) VALUES (?, ?, ?)";
                 PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, idNumber);
+                statement.setString(1, dni);
                 statement.setString(2, firstName);
                 statement.setString(3, lastName);
 
@@ -111,19 +109,18 @@ public class CreateEntity {
      */
     public void createSubject() {
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Enter subject ID: ");
-            int subjectId = scanner.nextInt();
-            scanner.nextLine(); // Clear the buffer
+            System.out.print("Enter subject DNI number: ");
+            String dni = scanner.nextLine();
 
             System.out.print("Enter subject name: ");
-            String subjectName = scanner.nextLine();
+            String name = scanner.nextLine();
 
             // Insert data into the "subject" table
             try (Connection connection = DriverManager.getConnection(dbUrl)) {
-                String sql = "INSERT INTO subject(id, name) VALUES (?, ?)";
+                String sql = "INSERT INTO subject(dni, name) VALUES (?, ?)";
                 PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, subjectId);
-                statement.setString(2, subjectName);
+                statement.setString(1, dni);
+                statement.setString(2, name);
 
                 int rowsInserted = statement.executeUpdate();
                 if (rowsInserted > 0) {

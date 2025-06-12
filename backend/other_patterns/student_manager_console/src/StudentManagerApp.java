@@ -17,20 +17,21 @@ public class StudentManagerApp {
                     ===============================================
                     |               STUDENT MANAGER               |
                     ===============================================
-                    |                                            |
-                    | Please select an option by typing the number: |
-                    |                                            |
-                    | 1. Create a record                         |
-                    | 2. Read a record                           |
-                    | 3. Update a record                         |
-                    | 4. Delete a record                         |
-                    | 5. Exit the program                        |
-                    |____________________________________________|
+                    |                                             |
+                    |    Select an option by typing the number:   |
+                    |                                             |
+                    | 1. Create a record                          |
+                    | 2. Read a record                            |
+                    | 3. Update a record                          |
+                    | 4. Delete a record                          |
+                    | 5. Exit the program                         |
+                    |_____________________________________________|
                     """;
             System.out.print(mainMenu);
 
             // Read selected option
             option = getValidatedIntInput(scanner, "Select an option (1-5): ");
+            if (option == -1) continue;
 
             // Execute action based on selected option
             switch (option) {
@@ -71,39 +72,57 @@ public class StudentManagerApp {
      * return Validated integer input
      */
 
-     public static int getValidatedIntInput(Scanner scanner, String prompt) {
-        int input;
-        while (true) {
-            System.out.print(prompt);
-            if (scanner.hasNextInt()) {
-                input = scanner.nextInt();
-                scanner.nextLine(); // consume newline
-                return input;
+    public static int getValidatedIntInput(Scanner scanner, String prompt) {
+        System.out.print(prompt);
+        try {
+            if (scanner.hasNextLine()) {
+                String line = scanner.nextLine().trim();
+                if (line.matches("\\d+")) {
+                    return Integer.parseInt(line);
+                } else {
+                    System.out.println("❌ Invalid input. Please enter a valid number.");
+                    return -1;
+                }
             } else {
-                System.out.println("Invalid input. Please enter a number.");
-                scanner.nextLine(); // consume invalid input
+                System.out.println("❌ No input detected. Exiting.");
+                return -1;
             }
+        } catch (Exception e) {
+            System.out.println("❌ Error reading input: " + e.getMessage());
+            return -1;
         }
     }
+
+
     /**
      * Menu for creating a record (Student, Professor, Subject).
      */
     public static void createRecord(Scanner scanner) {
+        int type; 
         System.out.print("""
                 Select the type of record to create:
                 1. Student
                 2. Professor
                 3. Subject
                 """);
-        int type = getValidatedIntInput(scanner, "Select the type of record to create (1-3): ");
+
+        type = getValidatedIntInput(scanner, "Select the type of record to create (1-3): ");
+        if (type == -1) return;
 
         CreateEntity createEntity = new CreateEntity();
 
         switch (type) {
-            case 1 -> createEntity.createStudent();
-            case 2 -> createEntity.createTeacher();
-            case 3 -> createEntity.createSubject();
-            default -> System.out.println(INVALID_OPTION_MSG);
+            case 1 : 
+                createEntity.createStudent();
+                break;
+            case 2 : 
+                createEntity.createTeacher();
+                break;
+            case 3 : 
+                createEntity.createSubject();
+                break;
+            default : 
+                System.out.println(INVALID_OPTION_MSG);
         }
     }
 
@@ -111,23 +130,30 @@ public class StudentManagerApp {
      * Menu for reading a record (Student, Professor, Subject).
      */
     public static void readRecord(Scanner scanner) {
+        int type;
         System.out.print("""
                 Select the type of record to read:
                 1. Student
                 2. Professor
                 3. Subject
                 """);
-
-        int  type = getValidatedIntInput(scanner, "Select the type of record to read (1-3): ");
         
+        type = getValidatedIntInput(scanner, "Select the type of record to read (1-3): ");
+        if (type == -1) return;
 
         ReadEntity readEntity = new ReadEntity();
 
         switch (type) {
-            case 1 -> readEntity.readStudent();
-            case 2 -> readEntity.readTeacher();
-            case 3 -> readEntity.readSubject();
-            default -> System.out.println(INVALID_OPTION_MSG);
+            case 1 : 
+                readEntity.readStudent();
+                break;
+            case 2 : 
+                readEntity.readTeacher();
+                break;
+            case 3 : 
+                readEntity.readSubject();
+                break;
+            default : System.out.println(INVALID_OPTION_MSG);
         }
     }
 
@@ -135,22 +161,31 @@ public class StudentManagerApp {
      * Menu for updating a record (Student, Professor, Subject).
      */
     public static void updateRecord(Scanner scanner) {
+        int type;
         System.out.print("""
                 Select the type of record to update:
                 1. Student
                 2. Professor
                 3. Subject
                 """);
-        int type = getValidatedIntInput(scanner, "Select the type of record to update (1-3): ");
-        
+
+        type = getValidatedIntInput(scanner, "Select the type of record to update (1-3): ");
+        if (type == -1) return;
 
         UpdateEntity updateEntity = new UpdateEntity();
 
         switch (type) {
-            case 1 -> updateEntity.updateStudent();
-            case 2 -> updateEntity.updateProfessor();
-            case 3 -> updateEntity.updateSubject();
-            default -> System.out.println(INVALID_OPTION_MSG);
+            case 1 : 
+                updateEntity.updateStudent();
+                break;
+            case 2 : 
+                updateEntity.updateTeacher();
+                break;
+            case 3 : 
+                updateEntity.updateSubject();
+                break;
+            default : 
+                System.out.println(INVALID_OPTION_MSG);
         }
     }
 
@@ -158,6 +193,7 @@ public class StudentManagerApp {
      * Menu for deleting a record or all records.
      */
     public static void deleteRecord(Scanner scanner) {
+        int type;
         System.out.print("""
                 Select the type of record to delete:
                 1. Student
@@ -165,16 +201,27 @@ public class StudentManagerApp {
                 3. Subject
                 4. Delete all records
                 """);
-        int type = getValidatedIntInput(scanner, "Select the type of record to delete (1-4): "); 
+        
+        type = getValidatedIntInput(scanner, "Select the type of record to delete (1-4): ");
+        if (type == -1) return;
 
         DeleteEntity deleteEntity = new DeleteEntity();
 
         switch (type) {
-            case 1 -> deleteEntity.deleteStudent();
-            case 2 -> deleteEntity.deleteProfessor();
-            case 3 -> deleteEntity.deleteSubject();
-            case 4 -> deleteEntity.deleteAllRecords();
-            default -> System.out.println(INVALID_OPTION_MSG);
+            case 1 : 
+                deleteEntity.deleteStudent();
+                break;
+            case 2 : 
+                deleteEntity.deleteTeacher();
+                break;
+            case 3 : 
+                deleteEntity.deleteSubject();
+                break;
+            case 4 : 
+                deleteEntity.deleteAllRecords();
+                break;
+            default : 
+                System.out.println(INVALID_OPTION_MSG);
         }
     }
 

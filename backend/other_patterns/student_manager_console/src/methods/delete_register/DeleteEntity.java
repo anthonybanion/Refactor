@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * Handles deletion of records for Student, Professor, and Subject entities.
+ * Handles deletion of records for Student, teacher, and Subject entities.
  */
 public class DeleteEntity {
     private String dbUrl;
@@ -39,12 +39,12 @@ public class DeleteEntity {
 
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.print("Enter the student's DNI to delete: ");
-            int dni = scanner.nextInt();
+            String dni = scanner.next();
 
             try (Connection connection = DriverManager.getConnection(dbUrl)) {
-                String sql = "DELETE FROM student WHERE student_dni = ?";
+                String sql = "DELETE FROM student WHERE dni = ?";
                 PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, dni);
+                statement.setString(1, dni);
 
                 int rowsDeleted = statement.executeUpdate();
                 if (rowsDeleted > 0) {
@@ -59,31 +59,31 @@ public class DeleteEntity {
     }
 
     /**
-     * Deletes a professor record by ID after checking if professors exist.
+     * Deletes a teacher record by ID after checking if teachers exist.
      */
-    public void deleteProfessor() {
-        if (!hasRecords("professor")) {
-            System.out.println("No professor records found to delete.");
+    public void deleteTeacher() {
+        if (!hasRecords("teacher")) {
+            System.out.println("No teacher records found to delete.");
             return;
         }
 
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Enter the professor's ID to delete: ");
-            int id = scanner.nextInt();
+            System.out.print("Enter the teacher's DNI number to delete: ");
+            String dni = scanner.next();
 
             try (Connection connection = DriverManager.getConnection(dbUrl)) {
-                String sql = "DELETE FROM professor WHERE id = ?";
+                String sql = "DELETE FROM teacher WHERE dni = ?";
                 PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, id);
+                statement.setString(1, dni);
 
                 int rowsDeleted = statement.executeUpdate();
                 if (rowsDeleted > 0) {
-                    System.out.println("Professor record deleted successfully.");
+                    System.out.println("teacher record deleted successfully.");
                 } else {
-                    System.out.println("No professor found with ID: " + id);
+                    System.out.println("No teacher found with DNI: " + dni);
                 }
             } catch (SQLException e) {
-                System.out.println("Database error while deleting professor: " + e.getMessage());
+                System.out.println("Database error while deleting teacher: " + e.getMessage());
             }
         }
     }
@@ -98,19 +98,19 @@ public class DeleteEntity {
         }
 
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Enter the subject ID to delete: ");
-            int id = scanner.nextInt();
+            System.out.print("Enter the subject DNI number to delete: ");
+            String dni = scanner.next();
 
             try (Connection connection = DriverManager.getConnection(dbUrl)) {
-                String sql = "DELETE FROM subject WHERE id = ?";
+                String sql = "DELETE FROM subject WHERE dni = ?";
                 PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, id);
+                statement.setString(1, dni);
 
                 int rowsDeleted = statement.executeUpdate();
                 if (rowsDeleted > 0) {
                     System.out.println("Subject record deleted successfully.");
                 } else {
-                    System.out.println("No subject found with ID: " + id);
+                    System.out.println("No subject found with DNI: " + dni);
                 }
             } catch (SQLException e) {
                 System.out.println("Database error while deleting subject: " + e.getMessage());
@@ -123,7 +123,7 @@ public class DeleteEntity {
      */
     public void deleteAllRecords() {
         try (Scanner scanner = new Scanner(System.in)) {
-            if (!hasRecords("student") && !hasRecords("professor") && !hasRecords("subject")) {
+            if (!hasRecords("student") && !hasRecords("teacher") && !hasRecords("subject")) {
                 System.out.println("Error: No records found. Please add data first.");
                 return;
             }
@@ -137,7 +137,7 @@ public class DeleteEntity {
 
             if (choice == 1) {
                 try (Connection connection = DriverManager.getConnection(dbUrl)) {
-                    String[] tables = {"student", "professor", "subject", "student_subject"};
+                    String[] tables = {"student", "teacher", "subject"};
                     for (String table : tables) {
                         String sql = "DELETE FROM " + table;
                         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -168,8 +168,8 @@ public class DeleteEntity {
             case "student":
                 query = "SELECT 1 FROM student LIMIT 1";
                 break;
-            case "professor":
-                query = "SELECT 1 FROM professor LIMIT 1";
+            case "teacher":
+                query = "SELECT 1 FROM teacher LIMIT 1";
                 break;
             case "subject":
                 query = "SELECT 1 FROM subject LIMIT 1";

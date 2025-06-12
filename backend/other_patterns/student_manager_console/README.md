@@ -59,22 +59,16 @@ git clone https://github.com/anthonybanion/Learning.git
 
 2. **Compile the project:**
 
-From the root (`Java/`):
+From the root (`student_manager_console/`):
 
 ```bash
-javac -cp "Refactor/backend/other*backend_patterns/student_administration_console/lib/sqlite-jdbc-3.50.1.0.jar" \
- -d Refactor/backend/other_backend_patterns/student_administration_console/bin/ \
- Refactor/backend/other_backend_patterns/student_administration_console/src/*.java \
- Refactor/backend/other*backend_patterns/student_administration_console/src/methods/\*\*/*.java \
- Refactor/backend/other_backend_patterns/student_administration_console/src/database/\*.java
+ javac -cp lib//sqlite-jdbc-3.50.1.0.jar -d bin/   src/StudentManagerApp.java   src/database/DatabaseConnection.java   src/methods/create_register/CreateEntity.java   src/methods/read_register/ReadEntity.java   src/methods/update_register/UpdateEntity.java   src/methods/delete_register/DeleteEntity.java
 ```
 
 3. **Run the application:**
 
 ```bash
-
-java -cp "Refactor/backend/other_backend_patterns/student_administration_console/lib/sqlite-jdbc-3.50.1.0.jar" \
- projects.small_projects.student_manager.src.StudentManagerApp
+java -cp "bin:lib/sqlite-jdbc-3.50.1.0.jar" StudentManagerApp
 ```
 
 ## 🛠️ Configuration

@@ -7,129 +7,155 @@ import java.io.IOException;
 import java.util.Scanner;
 import database.DatabaseConnection;
 
+/**
+ * Handles update operations for Student, Teacher, and Subject entities.
+ */
 public class UpdateEntity extends DatabaseConnection {
-    public String dbUrl;
+    private String dbUrl;
 
+    /**
+     * Loads the database connection URL from the configuration file.
+     */
     public UpdateEntity() {
-        // Cargar propiedades
         Properties properties = new Properties();
-        try (FileInputStream input = new FileInputStream("database/DBconfiguration.properties")) {
+        try (FileInputStream input = new FileInputStream("src/database/DBconfiguration.properties")) {
             properties.load(input);
             dbUrl = properties.getProperty("db.url");
         } catch (IOException e) {
-            System.out.println("Error al cargar las propiedades de la base de datos: " + e.getMessage());
+            System.out.println("Error loading database properties: " + e.getMessage());
         }
     }
 
+    /**
+     * Updates a student record based on the provided DNI.
+     */
     public void updateStudent() {
-        if (!checkRecords("alumno")) { // Verificar si hay registros de alumnos
-            return; // Regresar al menú sin hacer nada más
+        if (!checkRecords("student")) {
+            return;
         }
+
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Ingrese el DNI del alumno a actualizar: ");
-        int dni = scanner.nextInt();
-        scanner.nextLine(); // Limpiar el buffer
+        System.out.print("Enter the student's DNI to update: ");
+        String dni = scanner.nextLine();
 
-        System.out.print("Ingrese el nuevo nombre del alumno: ");
-        String nombre = scanner.nextLine();
+        System.out.print("Enter the new first name: ");
+        String firstName = scanner.nextLine();
 
-        System.out.print("Ingrese el nuevo apellido del alumno: ");
-        String apellido = scanner.nextLine();
+        System.out.print("Enter the new last name: ");
+        String lastName = scanner.nextLine();
 
-        System.out.print("Ingrese la nueva fecha de nacimiento del alumno (Formato esperado: AAAA-MM-DD): ");
-        String fechaNacimiento = scanner.nextLine();
+        System.out.print("Enter the new birth date (Format: YYYY-MM-DD): ");
+        String birthDate = scanner.nextLine();
 
-        System.out.print("Ingrese la nueva dirección del alumno: ");
-        String direccion = scanner.nextLine();
+        System.out.print("Enter the new address: ");
+        String address = scanner.nextLine();
 
-        // Estableciendo conexión a DB y ejecutar la actualización
         try (Connection connection = DriverManager.getConnection(dbUrl)) {
-            String sql = "UPDATE alumno SET nombre_alumno = ?, apellido_alumno = ?, fecha_nacimiento = ?, direccion = ? WHERE id_alumnoDNI = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, nombre);
-            preparedStatement.setString(2, apellido);
-            preparedStatement.setString(3, fechaNacimiento);
-            preparedStatement.setString(4, direccion);
-            preparedStatement.setInt(5, dni);
+            String sql = """
+                UPDATE student
+                SET first_name = ?, last_name = ?, birth_date = ?, address = ?
+                WHERE dni = ?;
+            """;
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
+            statement.setString(3, birthDate);
+            statement.setString(4, address);
+            statement.setString(5, dni);
 
-            int rowsAffected = preparedStatement.executeUpdate();
+            int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
-                System.out.println("El registro del alumno fue actualizado exitosamente.");
+                System.out.println("✅ Student record updated successfully.");
             } else {
-                System.out.println("No se encontró el alumno con DNI: " + dni);
+                System.out.println("⚠️ No student found with DNI: " + dni);
             }
         } catch (SQLException e) {
-            System.out.println("Error inesperado al intentar conectar a la base de datos: " + e.getMessage());
+            System.out.println("Database error while updating student: " + e.getMessage());
         }
-    scanner.close();
+
+        scanner.close();
     }
 
-    public void updateProfessor() {
-        if (!checkRecords("profesor")) { // Verificar si hay registros de alumnos
-            return; // Regresar al menú sin hacer nada más
+    /**
+     * Updates a teacher record based on the provided DNI.
+     */
+    public void updateTeacher() {
+        if (!checkRecords("teacher")) {
+            return;
         }
+
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Ingrese el ID del profesor a actualizar: ");
-        int id = scanner.nextInt();
-        scanner.nextLine(); // Limpiar el buffer
+        System.out.print("Enter the teacher's DNI to update: ");
+        String dni = scanner.nextLine();
 
-        System.out.print("Ingrese el nuevo nombre del profesor: ");
-        String nombre = scanner.nextLine();
+        System.out.print("Enter the new first name: ");
+        String firstName = scanner.nextLine();
 
-        System.out.print("Ingrese el nuevo apellido del profesor: ");
-        String apellido = scanner.nextLine();
+        System.out.print("Enter the new last name: ");
+        String lastName = scanner.nextLine();
 
-        // Estableciendo conexión a DB y ejecutar la actualización
         try (Connection connection = DriverManager.getConnection(dbUrl)) {
-            String sql = "UPDATE profesor SET nombre_profesor = ?, apellido_profesor = ? WHERE id_profesorDNI = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, nombre);
-            preparedStatement.setString(2, apellido);
-            preparedStatement.setInt(3, id);
+            String sql = """
+                UPDATE teacher
+                SET first_name = ?, last_name = ?
+                WHERE dni = ?;
+            """;
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
+            statement.setString(3, dni);
 
-            int rowsAffected = preparedStatement.executeUpdate();
+            int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
-                System.out.println("El registro del profesor fue actualizado exitosamente.");
+                System.out.println("✅ Teacher record updated successfully.");
             } else {
-                System.out.println("No se encontró el profesor con ID: " + id);
+                System.out.println("⚠️ No teacher found with DNI: " + dni);
             }
         } catch (SQLException e) {
-            System.out.println("Error inesperado al intentar conectar a la base de datos: " + e.getMessage());
+            System.out.println("Database error while updating teacher: " + e.getMessage());
         }
-    scanner.close();
+
+        scanner.close();
     }
 
+    /**
+     * Updates a subject record based on the provided DNI.
+     */
     public void updateSubject() {
-        if (!checkRecords("materia")) { // Verificar si hay registros de alumnos
-            return; // Regresar al menú sin hacer nada más
+        if (!checkRecords("subject")) {
+            return;
         }
+
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Ingrese el ID de la materia a actualizar: ");
-        int id = scanner.nextInt();
-        scanner.nextLine(); // Limpiar el buffer
+        System.out.print("Enter the subject's DNI to update: ");
+        String dni = scanner.nextLine();
 
-        System.out.print("Ingrese el nuevo nombre de la materia: ");
-        String nombre = scanner.nextLine();
+        System.out.print("Enter the new subject name: ");
+        String name = scanner.nextLine();
 
-        // Estableciendo conexión a DB y ejecutar la actualización
         try (Connection connection = DriverManager.getConnection(dbUrl)) {
-            String sql = "UPDATE materia SET nombre_materia = ? WHERE id_materia = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, nombre);
-            preparedStatement.setInt(2, id);
+            String sql = """
+                UPDATE subject
+                SET name = ?
+                WHERE dni = ?;
+            """;
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, name);
+            statement.setString(2, dni);
 
-            int rowsAffected = preparedStatement.executeUpdate();
+            int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
-                System.out.println("El registro de la materia fue actualizado exitosamente.");
+                System.out.println("✅ Subject record updated successfully.");
             } else {
-                System.out.println("No se encontró la materia con ID: " + id);
+                System.out.println("⚠️ No subject found with DNI: " + dni);
             }
         } catch (SQLException e) {
-            System.out.println("Error inesperado al intentar conectar a la base de datos: " + e.getMessage());
+            System.out.println("Database error while updating subject: " + e.getMessage());
         }
-    scanner.close();
+
+        scanner.close();
     }
 }
