@@ -1,0 +1,54 @@
+services:
+  web:
+    build: ./backend
+    container_name: django_app
+    command: >
+      sh -c "
+        python manage.py makemigrations &&
+        python manage.py migrate &&
+        python manage.py test --noinput &&
+        python manage.py createadmin &&
+        python manage.py loadexampledata &&
+        python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./backend/media:/media
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_NAME=django_db
+      - POSTGRES_USER=django_user
+      - POSTGRES_PASSWORD=django_password
+      - POSTGRES_HOST=db
+      - ADMIN_USER=admin_user
+      - ADMIN_EMAIL=admin@gmail.com
+      - ADMIN_PASSWORD=secure_password
+
+  db:
+    image: postgres:13
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: django_db
+      POSTGRES_USER: django_user
+      POSTGRES_PASSWORD: django_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  frontend:
+    build: ./frontend
+    container_name: react_frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:

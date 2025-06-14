@@ -46,6 +46,9 @@ Refactor/
 │   ├── lemp/
 │   ├── jamstack/
 │   ├── django_react/
+│   ├── django_vue/
+│   ├── flask_react/
+│   ├── flask_vue/
 │   ├── springboot_vue/
 │   ├── dotnet_angular/
 │   └── rails_hotwire/
@@ -73,7 +76,3 @@ By contributing or following along, you will gain hands-on experience in reading
 ---
 
 _Happy Refactoring!_ 🚀
-
-```
-
-```

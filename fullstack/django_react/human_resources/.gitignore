@@ -1,0 +1,113 @@
+# --- General system files ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Local history
+.lh
+
+# --- IDE/editor folders ---
+.vscode/
+.idea/
+
+# --- Environment variables ---
+.env
+.env.*
+*.env.local
+.envrc
+
+# --- Logs ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+pip-log.txt
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.sqlite3
+*.db
+*.pot
+*.mo
+*.egg-info/
+.eggs/
+*.manifest
+*.spec
+
+# --- Django specific ---
+db.sqlite3
+media/
+staticfiles/
+local_settings.py
+*.log
+
+# --- Migrations ---
+**/migrations/
+!*/migrations/__init__.py
+
+# --- Node.js / pnpm ---
+node_modules/
+.pnpm-store
+package-lock.json
+yarn.lock
+.pnpm-debug.log
+pnpm-lock.yaml
+
+# --- Next.js ---
+.next/
+out/
+
+# --- Build folders ---
+build/
+dist/
+coverage/
+
+# --- Docker ---
+*.pid
+docker-compose.override.yml
+*.tar
+**/.dockerignore
+
+# --- Virtual environments ---
+venv/
+env/
+ENV/
+.venv/
+.python-version
+
+# --- OS trash files ---
+*.bak
+*.tmp
+*.temp
+~$*
+
+# --- JetBrains (optional if you use PyCharm/WebStorm/etc.) ---
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# --- Backup files ---
+*.orig
+*.rej
+*.bak
+
+# --- Test coverage / pytest ---
+htmlcov/
+.tox/
+.nox/
+.cache/
+.coverage
+coverage.xml
+nosetests.xml
+*.cover
+*.py,cover
+
+# --- CI/CD ---
+pip-wheel-metadata/
+__pypackages__/
