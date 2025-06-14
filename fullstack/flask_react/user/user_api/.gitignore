@@ -1,0 +1,17 @@
+##ENTORNOS VIRTUALES##
+venv/
+venv
+.env
+env
+entorno
+
+##CACHÉ##
+__pycache__/
+*.pyc
+
+##Variables entorno##
+*.env
+
+#Bases de datos
+
+*.sqlite
