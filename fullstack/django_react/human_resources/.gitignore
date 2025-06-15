@@ -56,7 +56,7 @@ node_modules/
 package-lock.json
 yarn.lock
 .pnpm-debug.log
-pnpm-lock.yaml
+
 
 # --- Next.js ---
 .next/
@@ -71,7 +71,7 @@ coverage/
 *.pid
 docker-compose.override.yml
 *.tar
-**/.dockerignore
+
 
 # --- Virtual environments ---
 venv/

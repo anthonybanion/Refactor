@@ -125,33 +125,7 @@ package-lock.json
 replit.nix
 
 # === Ignore everything by default, but include specific folders and files ===
-**/*
-!*/
-!**/*.c
-!**/*.cpp
-!**/*.cs
-!**/*.css
-!**/*.h
-!**/*.html
-!**/*.java
-!**/*.js
-!**/*.json
-!**/*.md
-!**/*.pas
-!**/*.php
-!**/*.pl
-!**/*.psc
-!**/*.py
-!**/*.sh
-!**/*.txt
-!**/*.ts
-!**/*.tsx
-!**/*.xml
-!**/*.yml
-!**/*.yaml
-!**/*.jsx
-!**/.gitignore
-!**/README.md
+
 
 # === 🗂️ Project-specific ignores ===
 

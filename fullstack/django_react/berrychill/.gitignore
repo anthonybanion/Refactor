@@ -1,0 +1,85 @@
+# ========================
+# 🐍 Django & Python
+# ========================
+__pycache__/
+*.py[cod]
+*.sqlite3
+db.sqlite3
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+*.log
+
+# Entorno virtual
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+.Python
+
+# Variables de entorno
+.env
+.env.*
+*.env.local
+*.env.development
+*.env.production
+
+# Archivos de configuración local
+settings_local.py
+local_settings.py
+
+# ========================
+# ⚛️ React / Frontend
+# ========================
+node_modules/
+build/
+dist/
+.cache/
+.next/
+out/
+coverage/
+*.tgz
+
+# Archivos temporales de desarrollo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# .env para React
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ========================
+# 🧪 Test coverage
+# ========================
+coverage/
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# ========================
+# ⚙️ Logs
+# ========================
+logs/
+*.log
+
+# ========================
+# 📝 IDEs y editores
+# ========================
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
