@@ -6,6 +6,8 @@ Welcome to **Refactor**, a repository dedicated to improving, optimizing, and or
 
 This repository covers a wide range of technologies including but not limited to Flask, Django, React, Node.js, Laravel, Symfony, REST APIs, and more. Whether it's a backend service, frontend application, or full-stack project, every codebase will be carefully restructured and improved.
 
+---
+
 ## Objectives
 
 - Refactor external projects for optimal code quality and architecture.
@@ -14,6 +16,8 @@ This repository covers a wide range of technologies including but not limited to
 - Explore various technologies and programming languages through hands-on refactoring.
 - Build a growing collection of well-structured example projects.
 
+---
+
 ## Project Structure
 
 The repository is organized to clearly separate projects by type and technology, facilitating easy navigation and focused work:
@@ -21,49 +25,23 @@ The repository is organized to clearly separate projects by type and technology,
 ```text
 Refactor/
 │
-├── backend/
-│   ├── rest_api/
-│   ├── graphql/
-│   ├── grpc/
-│   ├── websockets/
-│   ├── soap/
-│   ├── other_patterns/
-│   └── rpc/
-│
-├── frontend/
-│   ├── atomic_design/
-│   ├── component_based/
-│   ├── folder_feature_based/
-│   ├── presentational_container/
-│   ├── mvc_adapted/
-│   └── rendering_strategies/ # (SPA, MPA, SSR, SSG)
-│
-├── fullstack/
-│   ├── mern/
-│   ├── mevn/
-│   ├── mean/
-│   ├── lamp/
-│   ├── lemp/
-│   ├── jamstack/
-│   ├── django_react/
-│   ├── django_vue/
-│   ├── flask_react/
-│   ├── flask_vue/
-│   ├── springboot_vue/
-│   ├── dotnet_angular/
-│   └── rails_hotwire/
-│
-└── README.md
+├── backend/        # Projects focused on backend development (e.g., REST APIs, MVC).
+├── frontend/       # Projects focused on frontend development (e.g., React, Vue).
+├── fullstack/      # Projects that combine backend and frontend (e.g., MERN, MEAN).
+├── README.md
+└── LICENSE
 
 ```
 
-### Folder descriptions:
+---
 
-- **backend/**: Projects focused on backend development, categorized by architecture (e.g., REST APIs, MVC).
-- **frontend/**: Frontend-only projects, categorized by design or architectural style (e.g., Atomic Design).
-- **fullstack/**: Projects that combine backend and frontend layers, grouped by architecture styles like Clean Architecture or Hexagonal Architecture.
+## Subfolder
 
-Each project folder will contain the refactored codebase, documentation on changes made, and notes on the refactoring process.
+- [backend/](backend/README.md)
+- [frontend/](frontend/README.md)
+- [fullstack/](fullstack/README.md)
+
+---
 
 ## Licensing
 

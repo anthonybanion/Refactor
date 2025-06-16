@@ -105,3 +105,9 @@ Elegimos desarrollar una aplicación de recursos humanos porque creemos en la im
 | Repository | [![Github Link](https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white 'Github Link')](https://github.com/No-Country/c17-29-n-node) | [Repo App](https://github.com/No-Country-simulation/s18-03-m-python-react 'Repo App') |
 | Frontend | Por desplegar | Sin enlace |
 | Backend | Por desplegar | Sin enlace |
+
+---
+
+<div align="right" style="font-size: 2em;">
+    <a href="../README.md">⬅️ Back to DRea</a>
+</div>

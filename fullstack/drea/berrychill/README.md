@@ -1,9 +1,8 @@
-
 # ¡Bienvenidos a VitalGreens!
 
 ## 🌟 ¿Quiénes Somos?
 
-En VitalGreens, nos enorgullece ofrecerte una **selección inigualable de comercios con productos frescos** cultivados cuidadosamente y de manera sostenible por pequeños productores locales. 
+En VitalGreens, nos enorgullece ofrecerte una **selección inigualable de comercios con productos frescos** cultivados cuidadosamente y de manera sostenible por pequeños productores locales.
 
 ## Nuestra Promesa
 
@@ -13,7 +12,7 @@ En VitalGreens, la **calidad es nuestra prioridad**. Nuestros productos se culti
 
 ¡Hola, emprendedores!
 
-Queremos **celebrar y apoyar** a quienes, como nosotros, se dedican con amor a los productos naturales y artesanales. Por eso, hemos creado un **espacio especial en nuestra tienda online** para exhibir productos de otros emprendimientos que compartan nuestra visión de comercio responsable, sostenible y saludable. 
+Queremos **celebrar y apoyar** a quienes, como nosotros, se dedican con amor a los productos naturales y artesanales. Por eso, hemos creado un **espacio especial en nuestra tienda online** para exhibir productos de otros emprendimientos que compartan nuestra visión de comercio responsable, sostenible y saludable.
 
 Si tu negocio está alineado con el espíritu de **comunidad y colaboración**, ¡nos encantaría que te unieras a nosotros! Juntos podemos construir una red sólida y colaborativa donde todos crecemos y nos beneficiamos mutuamente.
 
@@ -32,14 +31,16 @@ Para unirte a la familia de VitalGreens, buscamos productos que sean:
 
 ¡Gracias por elegir VitalGreens y por ser parte de nuestra comunidad! 🌿🍓
 
-
-
-
-
 ## Tecnologias
 
 **Frontend:** React, Bootsrap, CSS, HTML, JavaScript.
 
-**Backend:** Python - Django 
+**Backend:** Python - Django
 
-**UX/UI:** Figma
+**UX/UI:** Figma
+
+---
+
+<div align="right" style="font-size: 2em;">
+    <a href="../README.md">⬅️ Back to DRea</a>
+</div>
