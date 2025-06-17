@@ -1,0 +1,81 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load static %}
+<div class="card listing-card mt-5">
+    <div class="card-body">
+        <h6 class="registration-title mb-4">Stock</h6>
+        <form class = "search-box" method="get">
+            <label class = "item-search" for="categoria">Categoría:</label>
+            <input class = "item-search" type="text" name="categoria" id="categoria">
+            <span class = "item-search"></span>
+            <label class = "item-search" for="nombre">Nombre:</label>
+            <input class = "item-search" type="text" name="nombre" id="nombre">
+            
+            <button class="search-button" type="submit"><img class = "index-icon" src = "{% static 'imagenes/outlined-search-eyeglass-svgrepo-com.svg' %}"></button>
+        </form>
+        
+        <table class="table table-light text-center ">
+            <thead >
+                <tr>
+                    <th>Categoria</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>                    
+                    <th>Cantidad Minima</th>                                      
+                    <th>Cantidad Total</th>
+                    <th>campo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody >
+                {% for Producto in object_list %}
+                <tr> 
+                    {% if Producto.categoria %}                     
+                    <td>{{ Producto.categoria}}</td>
+                    {% else  %}
+                    <td> No posee</td>
+                    {% endif %}
+
+                    {% if Producto.nombre %}                     
+                    <td>{{ Producto.nombre}}</td>
+                    {% else  %}
+                    <td> No posee</td>
+                    {% endif %}
+
+                    {% if Producto.descripcion %}                     
+                    <td>{{ Producto.descripcion}}</td>
+                    {% else  %}
+                    <td> No posee</td>
+                    {% endif %}
+
+                    {% if Producto.cantidad_minima %}                     
+                    <td>{{ Producto.cantidad_minima }}</td>
+                    {% else  %}
+                    <td> No posee</td>
+                    {% endif %}
+                    
+                    <td>{{ Producto.calcular_cantidad_total }}</td>
+
+                    <td><input ></td>
+
+                    <td class>
+                        <a href="{% url 'listentradaproducto' producto_nombre=Producto.nombre %}"><img class = "index-icon" src="{% static 'imagenes/eye-1-svgrepo-com.svg' %}"></a>
+                        <a href= "{% url 'deleteproduct' Producto.id %} "><img class = "index-icon" src="{% static 'imagenes/trash-1-svgrepo-com.svg' %}"></a>
+                        <a href= "{% url 'editproduct' Producto.id %} "><img class = "index-icon" src="{% static 'imagenes/pen-svgrepo-com.svg' %}"></a>
+                    </td>                
+                    {% endfor %}
+
+                </tr>
+            </tbody>
+        
+        </table>
+
+        <div class="d-flex justify-content-end mt-4">
+            <div class="d-flex">
+                <a class="btn btn-user-cancel mx-1" href="{% url 'home' %}">Volver</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+    
+{% endblock %}

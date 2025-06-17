@@ -1,0 +1,74 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load static %}
+<script src="{% static 'funciones.js' %}"></script>
+
+<div class="card registration-card">
+    <div class="card-body">
+        <h6 class="registration-title mb-4"> Datos de {{ user.username }} </h6>
+                
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-6">
+                    <div class="d-flex flex-column">
+                        <ul>
+                            <li><label for="first_name">Nombre: </label> {{ user.first_name }}</li>
+
+                            <li><label for="last_name">Apellido: </label> {{ user.last_name }}</li>
+
+                            <li><label for="email">Email: </label> {{ user.email }}     </li>
+
+                            <li><label for="dni">DNI:</label> {{ user.dni }} </li>
+                        </ul>
+                          
+   
+                    </div>
+                    {% if user.errors %}
+                        <div class="invalid-feedback-custom">
+                            {% for field in form %}
+                                {% if field.errors %}
+                                    {{ field.errors }}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-6">
+                    <div class="d-flex flex-column">
+                        <ul>
+                            <li><label for="username">Usuario: </label> {{ user.username }} </li>
+
+                            <li><label for="sector">Sector: </label> {{ user.sector }} </li>
+
+                            <li><label for="groups">Permisos: </label>
+                                <div class="mb-4 d-flex">
+                                    {% for group in user.groups.all %}
+                                        {{ group.name }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </li>
+                        </ul>
+                        
+
+                                     
+                    </div>
+                </div>
+            </div>
+          
+            <div class="d-flex justify-content-end">
+                <div class="w-25 d-flex">
+                    <a class="btn btn-user-cancel mx-1 w-100" href="{% url 'home' %}">Volver</a>
+                </div>
+            </div>
+        </form>
+        <div class="popup-container" id="popup-container">
+            <div class="popup-content">
+                <p id="error-message" class="error-message"></p>
+                <button id="close-popup" class="close-popup">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

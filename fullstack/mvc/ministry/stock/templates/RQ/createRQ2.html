@@ -1,0 +1,10 @@
+{% block content %}
+  <h1>Seleccionar un Depósito</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ formulario.deposito.label_tag }}
+    {{ formulario.deposito }}
+    <input type="submit" value="Seleccionar">
+  </form>
+  {% endblock %}

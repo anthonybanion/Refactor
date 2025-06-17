@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de Confirmación</title>
+</head>
+<body>
+    <h1>Detalles de Confirmación</h1>
+
+    <ul>
+        {% for producto in detalles_productos %}
+        <li>
+            <strong>Nombre del Producto:</strong> {{ producto.nombre }}<br>
+            <strong>Cantidad:</strong> {{ producto.cantidad }}<br>
+            <strong>ID:</strong> {{ producto.id }}<br>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Puedes agregar más detalles o estilos según tus necesidades -->
+</body>
+</html>

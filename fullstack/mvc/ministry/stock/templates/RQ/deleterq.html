@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="card delete-user-card">
+    <div class="card-body">
+        <form action="" method="post" class="d-flex flex-column delete-user-form">
+            <div class= "text-center delete-menu-text">
+                ¿Está seguro que desea borrar el pedido?
+                {{RQ}}
+            </div>    
+            {% csrf_token %}
+            <div class= "d-flex justify-content-center delete-menu-btn">
+                <a class="btn btn-user-cancel mx-4 btn-mw" href="{% url 'listrq' %}">Volver</a>
+                {% comment %} <div class="ml-auto"></div> {% endcomment %}
+
+                <button type="submit" class= "btn btn-user-success mx-4 btn-mw">Eliminar</button>
+            </div>
+            
+        </form>
+    </div>
+</div>
+    
+
+{% endblock %}

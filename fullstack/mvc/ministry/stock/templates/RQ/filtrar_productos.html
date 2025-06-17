@@ -1,0 +1,72 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load static %}
+
+  <style>
+    .selected {
+        background-color: #ffd700;
+    }
+
+    .not-selected {
+        background-color: #ffffff;
+    }
+</style>
+    <h1>Filtrar Productos por Depósito</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.deposito.label_tag }}
+        {{ form.deposito }}
+        <input type="submit" value="Filtrar">
+    </form>
+
+    <h2>Productos en el Depósito seleccionado:</h2>
+    <ul>
+        {% for producto in productos %}
+        <li>
+            Nombre del Producto: {{ producto.producto__nombre }}<br>
+            Cantidad Total: {{ producto.cantidad_total }}<br>
+            <ul>
+                <li>
+                    <button class="toggle-button">Mostrar Entradas</button>
+                    <ul class="entrada-list" style="display: none;">
+                        {% for entrada in entradas_individuales %}
+                        {% if entrada.producto.nombre == producto.producto__nombre %}
+                        <li>
+                            Fecha de Vencimiento: {{ entrada.fecha_vencimiento }}<br>
+                            <div>
+                                <input type="hidden" class="cantidad-original" value="{{ entrada.cantidad }}">
+                                Cantidad: <span class="cantidad-duplicada">{{ entrada.cantidad }}</span>
+                                <label for="cantidad-agregar">Cantidad a Agregar:</label>
+                                <input type="number" id="cantidad-agregar" min="1" max="{{ entrada.cantidad }}">
+                                <button class="agregar-producto" data-producto="{{ producto.producto__nombre }}" data-fecha="{{ entrada.fecha_vencimiento }}">Agregar</button>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <form id="carrito-form" method="post">
+        {% csrf_token %}
+    </form>
+
+    <form id="confirmar-form" method="post">
+        {% csrf_token %}
+        <h2>Carrito de Compras:</h2>
+        <ul id="carrito-list">
+            <!-- Los elementos del carrito se agregarán aquí -->
+        </ul>
+        <button id="eliminar-producto">Eliminar Producto</button>
+        <button id="reducir-cantidad">Reducir Cantidad</button>
+        <button id="confirmar-button">Confirmar</button>
+    </form>
+
+    
+    {% load static %}
+    <script src="{% static 'funciones.js' %}"></script>
+
+{% endblock %}

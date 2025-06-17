@@ -1,0 +1,10 @@
+
+<h1>Lista RQ</h1>
+  <form method="post">
+    
+    {% csrf_token %}
+
+    {% for RQ in object_list %}
+       {{ RQ}}
+    {% endfor %}
+  </form>

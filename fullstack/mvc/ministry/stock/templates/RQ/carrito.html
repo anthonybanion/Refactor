@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrito de Compras</title>
+</head>
+<body>
+    <h1>Carrito de Compras</h1>
+    <ul>
+        {% for producto in productos_agregados %}
+        <li>
+            Nombre del Producto: {{ producto.nombre }}<br>
+            Cantidad: {{ producto.cantidad }}<br>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'filtrar_productos' %}">Volver a la página principal</a>
+</body>
+</html>

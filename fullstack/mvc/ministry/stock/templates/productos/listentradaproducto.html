@@ -1,0 +1,68 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load static %}
+<div class="card listing-card mt-5">
+    <div class="card-body">
+        <h6 class="registration-title mb-4">Vista de producto</h6>
+        <form class = "search-box" method="get">
+            <label class = "item-search" for="ubicacion">Ubicación:</label>
+            <input class = "item-search" type="text" name="ubicacion" id="fubicacion">
+            <spam class = "item-search"></spam>
+            <label class = "item-search" for="fecha_vencimiento">Fecha de vencimiento:</label>
+            <input class = "item-search" type="text" name="fecha_vencimiento" id="fecha_vencimiento">
+            
+            <button class="search-button" type="submit"><img class = "index-icon" src = "{% static 'imagenes/outlined-search-eyeglass-svgrepo-com.svg' %}"></button>
+        </form>
+        
+        <table class="table table-light text-center ">
+            <thead >
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Fecha de Ingreso</th>                    
+                    <th>Fecha de Vencimiento</th>                                      
+                    <th>Ubicación</th>
+                </tr>
+            </thead>
+            <tbody >
+                {% for entrada in object_list %}
+                    <tr>
+                        <td>{{ entrada.producto }}</td>
+                        <td>{{ entrada.cantidad }}</td>                        </td>
+                        <td>{{ entrada.fecha_ingreso }}</td>
+                        <td>{{ entrada.fecha_vencimiento }}</td>
+                        <td>{{ entrada.ubicacion }}</td>
+                    </tr>      
+                {% endfor %}
+            </tbody>
+        
+        </table>
+
+        <div class="d-flex justify-content-end mt-4">
+            <div class="d-flex">
+                <a class="btn btn-user-cancel mx-1" href="{% url 'listproduct' %}">Volver</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+    
+{% endblock %}
+
+
+<body>
+    <h1>Lista de Entrada de Productos</h1>
+    <ul>
+        {% for entrada in object_list %}
+            <li>
+                Producto: {{ entrada.producto }}<br>
+                Cantidad: {{ entrada.cantidad }}<br>
+                Fecha de Ingreso: {{ entrada.fecha_ingreso }}<br>
+                Fecha de Vencimiento: {{ entrada.fecha_vencimiento }}<br>
+                Ubicación: {{ entrada.ubicacion }}<br>
+            </li>
+       
+        {% endfor %}
+    </ul>
+</body>
+</html>
