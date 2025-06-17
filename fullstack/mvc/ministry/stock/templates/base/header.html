@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <!-- Otros enlaces a estilos y recursos aquí -->
+  <title>Sistema de Stock</title>
+</head>
+<body>
+  <header class="custom-header d-flex justify-content-between align-items-center py-3">
+    <div class="col-2"></div>
+    <h2 class="header-title col-8 text-center">Sistema de Gestión de Stock</h2>
+    <div class="col-2 text-end">
+      <a class="navbar-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="{% static 'imagenes/usuario.svg' %}" alt="" class="user-icon">
+      </a>
+      <ul class="dropdown-menu custom-dropdown">
+        <li><a class="dropdown-item custom-dropdown-item" href="{% url 'datauser' user.id %}">Perfil</a></li>
+        <!-- <li><a>{{ user_profile.pk }}</a></li> -->
+        <li><a class="dropdown-item custom-dropdown-item" href="{% url 'logout' %}">Salir</a></li>
+      </ul>
+    </div>
+  </header>
+  <!-- Resto de tu contenido aquí -->
+  
+  <!-- Carga de scripts de Bootstrap y otros aquí -->
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load static %}
+<div class="card listing-card mt-5">
+    <div class="card-body">
+        
+        <table class="table table-light text-center ">
+            <thead >
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>DNI</th>
+                    <th>Sector</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody >
+                {% for Usuario in object_list %}
+                <tr> 
+                    {% if Usuario.first_name %}                     
+                    <td>{{ Usuario.first_name}}</td>
+                    {% else  %}
+                    <td> No posee</td>
+                    {% endif %}
+                    <td>{{Usuario.last_name}}</td>
+                    
+                    {% if Usuario.dni == none %}
+                    <td>No posee</td>
+                    {% else %}
+                    <td>{{ Usuario.dni}}</td>
+                    {% endif %}
+                    
+                    <td>{{Usuario.sector}}</td>
+                    <td class><a href= "{% url 'deleteuser' Usuario.id %} "><img src="{% static 'imagenes/trash-1-svgrepo-com.svg' %}"></a><a href= "{% url 'edituser' Usuario.id %} "><img src="{% static 'imagenes/pen-svgrepo-com.svg' %}"></a></td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        
+        </table>
+    </div>
+</div>
+    
+{% endblock %}

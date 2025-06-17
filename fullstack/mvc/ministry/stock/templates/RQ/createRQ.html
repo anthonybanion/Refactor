@@ -1,0 +1,76 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  {% load static %}
+
+  <h1>Create RQ</h1>
+  <form id="formulario-createrq" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div id="productos-carrito">
+      
+    </div>
+    <div id="persona-form-container">
+      {% include "RQ/createPersona.html" %}
+      {% include "sede/listsede.html"%}
+    </div>
+    <button type="submit">Create RQ</button>
+  </form>
+
+  
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    function mostrarCampos() {
+      var destinatario = $('#id_destinatario').val();
+      if (destinatario === 'Sede') {
+        $('#div_id_sede').show();
+        $('#div_id_persona').hide();
+        $('#persona-form-container').empty();  // Vacía el contenedor de formulario de persona
+      } else if (destinatario === 'Persona') {
+        $('#div_id_sede').hide();
+        $('#div_id_persona').show();
+        cargarFormularioPersona();  // Carga dinámicamente el formulario de persona
+      } else {
+        $('#div_id_sede').hide();
+        $('#div_id_persona').hide();
+        $('#persona-form-container').empty();  // Vacía el contenedor de formulario de persona
+      }
+    }
+
+    function cargarFormularioPersona() {
+      $.ajax({
+        url: "{% url 'create_persona' %}",  // Ajusta esto con la URL de tu vista de creación de persona
+        method: "GET",
+        success: function(response) {
+          $('#persona-form-container').html(response);
+        },
+        error: function(error) {
+          console.error("Error al cargar el formulario de persona:", error);
+        }
+      });
+    }
+
+    $(document).ready(function () {
+      mostrarCampos();
+      $('#id_destinatario').change(mostrarCampos);
+    });
+
+    function cargarSelectSede(sedes) {
+      const selectSede = document.createElement('select');
+      selectSede.name = 'sede';  // Ajusta el nombre según tu modelo de RQ
+      selectSede.id = 'id_sede';  // Ajusta el ID según tu modelo de RQ
+      selectSede.innerHTML = `
+        <option value="" selected disabled>Selecciona una sede</option>
+        ${sedes.map(sede => `
+          <option value="${sede.id}">${sede.nombre}</option>
+        `).join('')}
+      `;
+    
+      $('#div_id_sede').html(selectSede);
+    }
+  </script>
+
+  <script>
+    var sedesData = {{ sedes|safe }};
+  </script>
+{% endblock %}

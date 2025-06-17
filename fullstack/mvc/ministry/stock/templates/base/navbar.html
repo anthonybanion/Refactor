@@ -1,0 +1,33 @@
+<nav class="custom-navbar">
+
+  <div>
+    <a class="navbar-link" href="{% url 'home' %}">Home</a>
+  </div>
+
+  <div class="dropdown">
+    <a class="navbar-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Usuarios
+    </a>
+    
+  
+    <ul class="dropdown-menu custom-dropdown">
+      <li><a class="dropdown-item custom-dropdown-item" href="{% url 'createuser' %}">Nuevo Usuario</a></li>
+      <li><a class="dropdown-item custom-dropdown-item" href="{% url 'ListUser' %}">Ver Usuarios</a></li>
+      
+    </ul>
+  </div>
+
+  <div class="dropdown">
+    <a class="navbar-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Productos
+    </a>
+    
+  
+    <ul class="dropdown-menu custom-dropdown">
+      <li><a class="dropdown-item custom-dropdown-item" href="{% url 'createproduct' %}">Nuevo Producto</a></li>
+      <li><a class="dropdown-item custom-dropdown-item" href="{% url 'entradaproducto' %}">Ingresar Stock</a></li>
+      <li><a class="dropdown-item custom-dropdown-item" href="{% url 'listproduct' %}">Ver Stock</a></li>
+      
+    </ul>
+  </div>
+</nav>

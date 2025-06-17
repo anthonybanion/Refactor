@@ -1,0 +1,86 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load static %}
+
+<script src="{% static 'funciones.js' %}"></script>
+
+
+<div class="card registration-card mb-1">
+    <div class="card-body">
+        <h6 class="registration-title mb-4">Ingreso Stock</h6>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="d-flex flex-column">                       
+
+                        <label for="numero_remito">Nº Remito</label>
+                        {{ form.numero_remito }}
+
+                        <label for="producto">Producto</label>
+                        <div class = "d-flex">
+                            {{ form.producto }}
+                            <a class="related-widget-wrapper-link add-related" data-popup="yes" href="/create_product/"><img src="/static/admin/img/icon-addlink.svg" alt="Agregar"></a>
+                        </div>
+                        
+
+                        <label for="ubicacion">Depósito</label>
+                        <div class = "d-flex">
+                            {{ form.ubicacion }}
+                            <a class="related-widget-wrapper-link add-related" data-popup="yes" href="/createdeposito"><img src="/static/admin/img/icon-addlink.svg" alt="Agregar"></a>
+                        </div>
+
+                        <label for="fecha_ingreso">Fecha Ingreso</label>
+                        <input id="id_fecha_ingreso" name="fecha_ingreso" type="date" required>
+                        
+                    </div>
+                    {% if form.errors %}
+                        <div class="invalid-feedback-custom">
+                            {% for field in form %}
+                              {% for error in field.errors %}
+                                <p class="error">{{ error }}</p>
+                              {% endfor %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex flex-column">
+                        
+                        <label for="cantidad">Cantidad</label>
+                        {{ form.cantidad }}
+                        
+                        <label for="unidadmedida">Unidad de medida</label>
+                        {{ form.unidadmedida }}
+                        
+                        
+                        <label for="fecha_vencimiento">Fecha de Vencimiento</label>
+                        <input id="id_fecha_vencimiento" name="fecha_vencimiento" type="date" required>
+
+                    </div>
+                </div>
+            </div>
+
+            <label for="observacion">Observación</label>
+            <div class="d-flex justify-content-center">
+                <textarea class="observation-field">{{ form.f_observacion }}</textarea>
+            </div>
+
+            <div class="d-flex justify-content-end mt-4">
+                <div class="d-flex">
+                    <a class="btn btn-user-cancel mx-1" href="{% url 'home' %}">Volver</a>
+                    <button class="btn btn-user-success mx-1" type="submit">Guardar</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="popup-container" id="popup-container">
+            <div class="popup-content">
+                <p id="error-message" class="error-message"></p>
+                <button id="close-popup" class="close-popup">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load static %}
+
+
+
+<div class="card listing-card mt-5">
+    <div class="card-body">
+        
+        <title>Lista de Depósitos</title>
+
+        <table class="table table-light text-center ">
+            <thead >
+                <tr>
+                    <th>Nombre</th>
+                    <th>Direcciòn</th>
+                    <th>Observacion</th>
+                    <th>Creado por</th>
+                   
+                </tr>
+            </thead>
+            <tbody >
+                {% for Deposito in object_list %}
+                <tr> 
+                    {% if Deposito.nombre %}                     
+                    <td>{{ Deposito.nombre}}</td>
+                    {% else  %}
+                    <td> N/A </td>
+                    {% endif %}
+                                        
+                    {% if Deposito.direccion %}
+                    <td>{{ Deposito.direccion}}</td>
+                    {% else %}
+                    <td>N/A</td>
+                    {% endif %}
+
+                    {% if Deposito.observacion %}
+                    <td>{{ Deposito.observacion}}</td>
+                    {% else %}
+                    <td>N/A</td>
+                    {% endif %}
+
+                     {% if Deposito.registrado_por %}
+                    <td>{{ Deposito.registrado_por}}</td>
+                    {% else %}
+                    <td>N/A</td>
+                    {% endif %}
+
+                {% endfor %}
+                </tr>
+            </tbody>
+        
+        </table>
+    </div>
+</div>
+
+    
+{% endblock %}
