@@ -27,6 +27,7 @@ This section of the Refactor repository focuses on **backend-only projects**, ex
 backend/
 |
 ├── rest_api/          # RESTful API projects
+├── classic_mvc/       # Classic MVC projects
 ├── graphql/           # GraphQL API projects
 ├── grpc/              # gRPC projects
 ├── websockets/        # WebSocket projects
