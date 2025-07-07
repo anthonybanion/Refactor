@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Institucion{% endblock %}
+
+{% block body %}
+    <h1>Institucion</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ institucion.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ institucion.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Direccion</th>
+                <td>{{ institucion.direccion }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ institucion.telefono }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ institucion.email }}</td>
+            </tr>
+            <tr>
+                <th>Foto</th>
+                <td>
+                    <img src="{{ asset('img/institucion/' ~ institucion.id ~ '.png') }}"
+                        alt="Foto de {{ institucion.nombre }}"
+                        style="max-width: 150px; height: auto; border: 1px solid #ccc; border-radius: 4px;">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_institucion_index') }}">back to list</a>
+
+    <a href="{{ path('app_institucion_edit', {'id': institucion.id}) }}">edit</a>
+
+    {{ include('institucion/_delete_form.html.twig') }}
+{% endblock %}
