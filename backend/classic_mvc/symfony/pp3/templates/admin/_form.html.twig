@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+   <div class="botonera">
+    <a class="regresa" href="{{ path('app_admin_index') }}">volver</a>
+    <!-- <button class="btn">{{ button_label|default('GUARDAR') }}</button> -->
+    <button class="dos" type="submit" >Guardar</button>
+   </div>
+
+{{ form_end(form) }}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Crear Administradores del Sistema{% endblock %}
+
+{% block body %}
+<div class="home-div">
+    <h1>Crear un administrador nuevo</h1>
+
+    {{ include('admin/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_index') }}">volver</a>
+</div>
+{% endblock %}
