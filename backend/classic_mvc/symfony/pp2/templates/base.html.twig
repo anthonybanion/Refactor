@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}profe rodriguez gustavo{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+        <style>
+        
+            label {
+                font-size:25px;
+                width:200px;
+                display:flex;    
+            }
+
+            body{
+                width: 100vw;
+                height: 100vh;
+                top:0;
+                border:0;
+                padding:0;
+                background-color: rgba(135, 135, 135, 0.9);
+            }
+            table {
+                width: 89vw;
+                border-collapse: collapse;
+                margin: 20px 0;
+                border: 2px solid black; /* Borde alrededor de toda la tabla */
+            }
+
+            td, th {
+                border: 1px solid black; /* Línea divisoria negra entre celdas */
+                padding: 10px;
+                text-align: left;
+            }
+
+            th {
+                background-color:rgb(156, 123, 96);
+                font-weight: bold;
+            }
+
+            tr:nth-child(even) {
+                background-color:rgb(143, 136, 134);
+            }
+
+            tr:hover {
+                background-color: rgb(139, 120, 120);
+            }
+
+            /*menu desplegable*/
+            .sidebar {
+                margin-top: 0px;
+                position: fixed;
+                top: 0;
+                left: -25px;
+                background-color:rgb(184, 179, 158);
+                color: white;
+                height: 100vh;
+                overflow-x: hidden;
+                transition: width 0.6s ease;
+                z-index: 1000;
+            }
+
+            .sidebar.collapsed {
+                width: 40px;
+            }
+
+
+
+            /* Oculta los textos y muestra solo emojis en modo colapsado */
+            .sidebar.collapsed .text {
+                opacity: 0;
+                visibility: hidden;
+                display: none;
+                transition: opacity 0.4s ease;
+            }
+
+
+
+            /* Ícono de menú hamburguesa visible siempre */
+            .menu-icon {
+                display: inline-block;
+                font-size: 1.4rem;
+                margin-bottom: 1rem;
+            }
+
+            /* Links */
+            .link {
+                display: flex;
+                align-items: center;
+                gap: 0.2rem;
+                padding: 0.2rem;
+                text-decoration: none;
+                color: white;
+                border-radius: 0.25rem;
+                transition: background-color 0.2s ease-in-out;
+            }
+
+            .link:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+
+            /* Sublinks */
+            .sublink {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.25rem 1.5rem;
+                color: white;
+                text-decoration: none;
+                font-size: 0.9rem;
+            }
+
+            .sublink:hover {
+                background-color: rgba(255, 255, 255, 0.3);
+                border-radius: 0.25rem;
+            }
+
+            .brand {
+                text-align: center;
+                font-size: 1.2rem;
+                font-weight: bold;
+            }
+
+            .logo {
+                text-align: center;
+                margin-top: 2rem;
+            }
+            .logo img {
+                width: 100%;
+                height: auto;
+                max-width: 100%;
+                display: block;
+                margin: 0 auto;
+                border-radius: 0.5rem;
+            }
+            .text{
+                color: black;
+                font-size: 20px;
+            }
+            .layout-wrapper {
+                display: flex;
+                transition: all 1.1s ease;
+            }
+
+            .sidebar {
+                width: 55px;
+                transition: width 1.1s ease;
+                flex-shrink: 0;
+            }
+
+            /*.sidebar:hover {
+                width: 180px;
+            }*/
+
+            #page-content {
+                width: 100%;
+                height: 100%;
+                flex-grow: 1;
+                transition: margin-left 1.1s ease;
+                margin-left: 55px;
+            }
+
+           /* .sidebar:hover + #page-content {
+                margin-left: 195px;
+            }*/
+            .layout-wrapper {
+                display: flex;
+                transition: all 1.1s ease;
+            }
+            .collapse {
+                display: none;
+                transition: all 1.1s ease;
+            }
+
+            .collapse.show {
+                display: block;
+            }
+        
+            .logo img {
+                border-radius: 0.5rem;
+                margin-left:-7px;
+            }            
+            .logo2 {
+                text-align: center;
+            }
+            .logo2 img {
+                width: 100vw;   
+                height: 100vh;  
+                object-fit: cover;  
+                display: block;
+                border-radius: 0; 
+            }
+
+            .toggle-button {
+                top: 20px;
+                margin-left: -7px;
+                z-index: 1100;
+                background-color:rgb(142, 137, 118);
+                border: none;
+                font-size: 1.2rem;
+                padding: 0.5rem;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .toggle-button:hover, .link:hover{
+                background-color: grey; 
+                transition: all 1.1s ease-in-out;
+            }
+
+
+
+
+
+            .sidebar:not(.collapsed) {
+                width: 170px;
+            }
+
+            .sidebar:not(.collapsed) .text {
+                opacity: 1;
+                visibility: visible;
+                display: inline;
+            }
+
+            #page-content {
+                width: 89vw;
+                transition: margin-left 1.1s ease;
+                margin-left: 55px;
+                
+            }
+
+            .sidebar:not(.collapsed) ~ #page-content {
+                margin-left: 180px;
+            }
+
+
+            .registrop{
+                width: 100vw;
+                font-size: 30px;
+            }
+
+        
+            .bi-person {
+                margin-left:-2px;
+            }
+            #textp {
+                margin-left:-5px;
+            }
+
+
+            .home-input {
+                display:flex;
+                border: 1px solid #ccc;
+                padding-left: 20px;
+                width: 70%;
+                margin-left: 40px;
+                margin: 0 auto;
+                box-shadow: 0 0 10px 5px rgb(82, 59, 59, 0.7); 
+            }
+
+            .home-label {
+                display: flex;
+                width: 100%;
+                justify-content:   center;
+                color: black;
+            }
+            .home-div {
+                justify-content: center;
+                max-width: 500px;
+                border-collapse: collapse;
+                margin: 0 auto;
+                background-color:rgb(253, 250, 240);;
+                box-shadow: 0 0 10px 5px rgb(82, 59, 59, 0.7); 
+                border-radius: 5px;
+                height: 500px;
+            }
+            .home-div form {
+                margin-left:165px;
+                justify-content: center;
+            }
+
+            
+
+            .home-div h1 {
+                display:flex;
+                justify-content: center;
+                color:black;
+            }
+            .home-input td{
+                color:black;
+            }
+
+
+            .home-input:invalid {
+                border: 2px solid red;
+            }
+            
+            .home-input:valid {
+                border: 2px solid rgb(139, 139, 198);
+            }
+
+
+            .uno {
+                margin-left:120px;
+                margin-top:16px;
+                background-color: rgb(205, 111, 111);
+            }
+            .uno:hover{
+                background-color: rgb(202, 83, 83);
+            }
+            .botonera {
+                margin-top:10px;
+            }
+
+
+
+        /*estilos de las tablas*/
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                font-size: 1rem;
+                font-family: sans-serif;
+                min-width: 400px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            thead {
+                background-color: #009879;
+                color: #ffffff;
+                text-align: left;
+            }
+
+            th, td {
+                padding: 12px 15px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            tbody tr:hover {
+                background-color: #f1f1f1;
+            }
+
+            @media screen and (max-width: 768px) {
+                table, thead, tbody, th, td, tr {
+                    display: block;
+                }
+
+                thead {
+                    display: none;
+                }
+
+                tr {
+                    margin-bottom: 15px;
+                }
+
+                td {
+                    padding-left: 50%;
+                    position: relative;
+                }
+
+                td::before {
+                    content: attr(data-label);
+                    position: absolute;
+                    left: 15px;
+                    font-weight: bold;
+                }
+            }
+        </style>
+    </head>
+    <body id="page-top">
+        <div class="layout-wrapper">
+            <ul class="sidebar" id="sidebar">
+                <div class="brand d-flex align-items-center justify-content-center" id="sierra">
+                    <span class="menu-icon">🏠</span>
+                    <span class="text">nombre de empresa</span>
+                </div>
+
+                <div class="item">
+                    <a class="link" href="{{ path('app_inicio') }}">
+                        🏠<span class="text">Inicio</span>
+                    </a>
+                </div>
+
+
+                <div class="item">
+                    <a class="link" data-toggle="collapse" href="#menuPersonas">
+                    👥<span class="text">Configuración</span>
+                    </a>
+                    <div id="menuPersonas" class="collapse">
+                        {% if is_granted ('ROLE_SUPER_ADMIN')  %}
+                        <a class="sublink" href="{{ path('app_admin_index') }}">📋<span class="text">Usuarios</span></a>
+                        {% endif %} 
+                    </div>
+                </div>
+                
+                <div class="logo">
+                    <img src="{{ asset('img/logo.jpg') }}" alt="Logo" class="img-fluid">
+                <!--    <p class="text">Bienvenidos<br>empresa</p> -->
+                </div>
+                <div class="item">
+                    <a class="link" href="{{ path('app_carnet') }}">
+                        ​🎬​<span class="text">Carnet</span>
+                    </a>
+                </div>
+               
+                <div class="item">
+                    <a class="link" data-toggle="collapse" href="#menuInstitucion">
+                    👥<span class="text">Institucion</span>
+                    </a>
+                    <div id="menuInstitucion" class="collapse">
+                        <a class="sublink" href="{{ path('app_institucion_index') }}">📋<span class="text">Institucion</span></a>
+                    </div>
+                </div>
+                <div class="item">
+                    <a class="link" data-toggle="collapse" href="#menuPersonal">
+                    👥<span class="text">Personal</span>
+                    </a>
+                    <div id="menuPersonal" class="collapse">
+                        <a class="sublink" href="{{ path('app_personal_index') }}">📋<span class="text">Personal</span></a>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <a class="link" href="{{ path('app_logout') }}">
+                        🏠<span class="text">Salir</span>
+                    </a>
+                </div>
+
+                <div class="item">
+                    <button id="toggleSidebar" class="toggle-button">⬅️</button>
+                </div>
+            </ul>
+            <div id="page-content">
+                {% block body %}{% endblock %}
+            </div>
+
+            {% block javascripts %}
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        document.querySelectorAll('.link[data-toggle="collapse"]').forEach(link => {
+                            link.addEventListener("click", function (e) {
+                                e.preventDefault();
+                                const target = document.querySelector(this.getAttribute("href"));
+                                if (target) {
+                                    target.classList.toggle("show");
+                                }
+                            });
+                        });
+
+                        document.querySelectorAll('.toggle-collapse').forEach(function (toggle) {
+                            toggle.addEventListener('click', function (e) {
+                                e.preventDefault();
+                                const targetId = this.getAttribute('href');
+                                const target = document.querySelector(targetId);
+                                if (target) {
+                                    target.classList.toggle('show');
+                                }
+                            });
+                        });
+
+                    });
+                </script>
+                <script>
+                    function inicializarToggleSidebar() {
+                        const sidebar = document.getElementById("sidebar");
+                        const toggleBtn = document.getElementById("toggleSidebar");
+
+                        if (sidebar && toggleBtn) {
+                            toggleBtn.addEventListener("click", function () {
+                                sidebar.classList.toggle("collapsed");
+
+                                // Cambiar la flecha según el estado
+                                if (sidebar.classList.contains("collapsed")) {
+                                    toggleBtn.innerText = "➡️";
+                                } else {
+                                    toggleBtn.innerText = "⬅️";
+                                }
+                            });
+                        }
+                    }
+                    inicializarToggleSidebar();
+                </script>		
+            {% endblock %}
+        </div>
+    </body>
+</html>
